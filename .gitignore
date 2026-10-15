@@ -1,12 +1,9 @@
 ﻿.vs/
 **/bin/
 **/obj/
-*.user
-*.suo
-*.dbmdl
-*.cache
 
-
-AmbienteDiProva/appsettings.Local.json
-AmbienteDiProva/appsettings.Development.json
-AmbienteDiProva/appsettings.json
+# File di configurazione locali e credenziali
+appsettings.Local.json
+appsettings.Development.json
+**/appsettings.Local.json
+**/appsettings.Development.json
