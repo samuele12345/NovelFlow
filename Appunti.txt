@@ -1,0 +1,7 @@
+﻿Sito per accedre ad un catalogo di libri con Gutenberg API o altre api, ricerca libri, sezione appunti e modello per avere riassunti e critica? Aggiungere sezione film tipo streamingCommunity?
+
+• Open Library API: Offre un vasto catalogo open-source accessibile tramite REST/JSON senza necessità di chiave API (no-key), permettendo di cercare per titolo, autore o ISBN e ottenere metadati, edizioni e immagini di copertina.
+• Project Gutenberg API: Una RESTful API dedicata al database del Progetto Gutenberg, che dà accesso a oltre 76.000 eBook gratuiti in pubblico dominio con ricerca full-text PostgreSQL, filtri per metadati (autori, lingue, argomenti) e tempi di risposta inferiori ai 200ms.
+• Google Books API: Consente di cercare tra milioni di libri digitalizzati da Google, recuperare metadati, anteprime e informazioni bibliografiche (richiede una chiave API gratuita di Google Cloud con limiti di utilizzo generosi).
+
+aggiungere data e ora agli appunti

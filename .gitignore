@@ -1,0 +1,12 @@
+﻿.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.dbmdl
+*.cache
+
+
+AmbienteDiProva/appsettings.Local.json
+AmbienteDiProva/appsettings.Development.json
+AmbienteDiProva/appsettings.json

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Archivio";
+}
+
+<style>
+    .elApp > li{
+        border: 1px solid black;
+        border-radius: 5px;
+        transition: 0.4s ease-in-out;
+    }
+
+    .elApp > li:hover{
+        scale: 1.01;
+        cursor: pointer;
+        transition: 0.4s ease-in-out;
+    }
+</style>
+
+<div class="container-fluid">
+    <input type="text" class="inp w-100" placeholder="Cerca i tuoi appunti..."/>
+
+    <ol class="elApp list-unstyled ps-0 ms-0 mt-3"></ol>
+
+    <p class="mess mt-3 opacity-25">Caricamento...</p>
+</div>
+
+
+@section Scripts{
+    @{
+        <script src="~/js/Archivio.js"></script>
+    }
+}
