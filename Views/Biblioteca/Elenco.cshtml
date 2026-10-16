@@ -2,14 +2,42 @@
     ViewData["Title"] = "Elenco";
 }
 
+<style>
+    .active{
+        color: blue;
+    }
+
+    .btn-pag{
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-pag:hover{
+        transform: scale(1.02);
+        transition: 0.3s ease-in-out;
+    }
+
+    .dis-none{
+        display: none;
+    }
+</style>
+
 <div>
     <input class="libro-input" type="text" placeholder="Cerca un libro..."/>
 
-    <ol class="list-unstiled ms-0 ps-0 lista-libri">
+    <ol class="list-unstyled ms-0 ps-0 lista-libri">
         
     </ol>
 
     <p class="caricamento"></p>
+
+</div>
+
+<div class="d-none fd-row w-100 justify-content-center cont-but"> 
+    <button id="1" disabled class="btn-pag bg-transparent border-0 active" onclick="renderPage(1)">1</button>
+    <button id="2" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(2)">2</button>
+    <button id="3" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(3)">3</button>
+    <button id="4" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(4)">4</button>
+    <button id="5" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(5)">5</button>
 </div>
 
 @section Scripts{
