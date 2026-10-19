@@ -1,18 +1,71 @@
 ﻿const listL = document.querySelector(".lista-libri");
 var libri = [];
 var html = "";
+var nPag = 1;
+const pre = document.querySelector(".prec")
+const su = document.querySelector(".suc")
+const pag = document.querySelector(".n-pag")
 
-document.addEventListener("DOMContentLoaded", () => {
-    const input = document.querySelector(".libro-input")
+async function navigazione(prog, inp) {
+    const contBut = document.querySelector(".cont-but")
+    if (prog === true) {
+        if (nPag === 1) {
+            pre.disabled = false;
+        }
 
-    input.addEventListener("keyup", () => {
-        ricercaLibri(input)
-    })
+        nPag++;
+        pag.textContent = nPag;
+    } else if(prog === false){
+        nPag--;
 
-})
+        if (nPag === 1) {
+            pre.disabled = true;
+        }
 
-async function ricercaLibri(inp){
-    try{
+        pag.textContent = nPag;
+    }
+
+    if (libri[nPag-1] === undefined) {
+        const response = await fetch(`/Biblioteca/fetchElenco?input=${encodeURIComponent(inp.toString())}&nPag=${nPag}`)
+
+        if (!response.ok) {
+            throw new Error(`Error status: ${response.status}`)
+        }
+
+        const result = await response.json()
+
+        console.log(typeof result.content, JSON.parse(result.content))
+
+        const contenuto = JSON.parse(result.content)
+
+        libri[nPag - 1] = contenuto;
+
+        if (libri[nPag - 1].results.length !== 0) {
+            contBut.classList.remove("d-none");
+            contBut.classList.add("d-flex");
+        } else {
+            contBut.classList.remove("d-flex");
+            contBut.classList.add("d-none");
+        }
+
+        console.log(libri[nPag-1].results);
+
+        
+
+        renderPage();
+    } else {
+        renderPage();
+    }
+}
+
+function ricercaLibriDefault(inp) {
+    nPag = 1;
+    pre.disabled = true;
+    libri = [];
+    navigazione(null, inp)
+
+    /*
+    try {
         const contBut = document.querySelector(".cont-but")
         
         if(inp.value === null || inp.value === ""){
@@ -76,20 +129,47 @@ async function ricercaLibri(inp){
     }catch(error){
         console.log(error)
     }
+
+    */
 }
 
-function renderPage(num){
+function renderPage() {
+    /*
     html = "";
     num--;
     var inizio = (num * 32)
     var fine = inizio + 31;
     var dati2 = libri.slice(inizio, fine);
+    */
 
-    dati2.forEach(elemento => {
-        html += `
+    html = "";
+
+    if (libri.length > 0) {
+        libri[nPag-1].results.forEach(elemento => {
+            html += `
             <li class="w-100">${elemento.title}</li>
         `
-    })
+        })
+    }
+    
 
     listL.innerHTML = html;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.querySelector(".libro-input")
+
+    input.addEventListener("keyup", () => {
+        console.log(libri)
+        ricercaLibriDefault(input.value)
+    })
+
+    su.addEventListener("click", () => {
+        navigazione(true, input.value)
+    })
+
+    pre.addEventListener("click", () => {
+        navigazione(false, input.value)
+    })
+
+})
