@@ -27,31 +27,57 @@
     .n-pag:hover{
         cursor: default;
     }
+
+    .li-cont-left{
+        width: 400px;
+        height: 300px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        object-position: center;
+        
+    }
+
+    .li-cont-left > img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border: 1px solid transparent;
+        border-radius: 10px;
+    }
+
+    .cont-li{
+        
+        overflow: hidden;
+    }
+
 </style>
 
-<div>
-    <input class="libro-input" type="text" placeholder="Cerca un libro..."/>
+<div class="container-fluid w-100 text-center center">
+    <input class="libro-input w-75" type="text" placeholder="Cerca un libro..."/>
 
-    <ol class="list-unstyled ms-0 ps-0 lista-libri">
-        
+    <ol class="list-unstyled lista-libri w-75 mt-5 mx-auto">
     </ol>
 
-    <p class="caricamento"></p>
-
-</div>
-
-<div class="d-none fd-row w-100 justify-content-center align-items-center cont-but mt-3"> 
-    <button class="btn-pag prec bg-transparent border-0 disabled">Precedente</button>
-    <button class="bg-transparent border-0 n-pag">1</button>
-    <button class="btn-pag suc bg-transparent border-0">Successiva</button>
-    <!--
+    <p class="caricamento w-75 mx-auto"></p>
+    
+    <div class="d-none fd-row w-75 justify-content-center align-items-center mx-auto cont-but mt-5">
+        <button class="btn-pag prec bg-transparent border-0 disabled">Precedente</button>
+        <button class="bg-transparent border-0 n-pag">1</button>
+        <button class="btn-pag suc bg-transparent border-0">Successiva</button>
+        <!--
         <button id="1" disabled class="btn-pag bg-transparent border-0 active" onclick="renderPage(1)">1</button>
         <button id="2" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(2)">2</button>
         <button id="3" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(3)">3</button>
         <button id="4" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(4)">4</button>
         <button id="5" disabled class="btn-pag bg-transparent border-0" onclick="renderPage(5)">5</button>
     -->
+    </div>
 </div>
+
+
 
 @section Scripts{
     @{

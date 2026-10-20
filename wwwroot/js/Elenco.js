@@ -5,9 +5,21 @@ var nPag = 1;
 const pre = document.querySelector(".prec")
 const su = document.querySelector(".suc")
 const pag = document.querySelector(".n-pag")
+const car = document.querySelector(".caricamento")
 
 async function navigazione(prog, inp) {
     const contBut = document.querySelector(".cont-but")
+
+    console.log("input value: " + inp)
+
+    if (inp === "") {
+        contBut.classList.remove("d-flex");
+        contBut.classList.add("d-none");
+        listL.innerHTML = "";
+        car.textContent = "";
+        return
+    }
+
     if (prog === true) {
         if (nPag === 1) {
             pre.disabled = false;
@@ -25,11 +37,13 @@ async function navigazione(prog, inp) {
         pag.textContent = nPag;
     }
 
-    if (libri[nPag-1] === undefined) {
-        const response = await fetch(`/Biblioteca/fetchElenco?input=${encodeURIComponent(inp.toString())}&nPag=${nPag}`)
+    if (libri[nPag - 1] === undefined) {
+        const response = await fetch(`/Biblioteca/fetchElenco?input=${encodeURIComponent(inp.toString())}&nPag=${nPag}`);
+        car.textContent = "Caricamento...";
 
         if (!response.ok) {
-            throw new Error(`Error status: ${response.status}`)
+            car.textContent = "Nessun libro trovato...";
+            throw new Error(`Error status: ${response.status}`);
         }
 
         const result = await response.json()
@@ -38,17 +52,24 @@ async function navigazione(prog, inp) {
 
         const contenuto = JSON.parse(result.content)
 
-        libri[nPag - 1] = contenuto;
+        if (contenuto.results.length > 0) {
+            libri[nPag - 1] = contenuto;
 
-        if (libri[nPag - 1].results.length !== 0) {
             contBut.classList.remove("d-none");
             contBut.classList.add("d-flex");
-        } else {
+
+            console.log(libri[nPag - 1].results);
+        } else if (contenuto.results.length === 0) {
             contBut.classList.remove("d-flex");
             contBut.classList.add("d-none");
+            listL.innerHTML = "";
+            car.textContent = "Nessun libro trovato...";
         }
+        
 
-        console.log(libri[nPag-1].results);
+        
+
+        
 
         
 
@@ -142,22 +163,43 @@ function renderPage() {
     var dati2 = libri.slice(inizio, fine);
     */
 
-    html = "";
-
-    if (libri.length > 0) {
-        libri[nPag-1].results.forEach(elemento => {
-            html += `
-            <li class="w-100">${elemento.title}</li>
-        `
-        })
-    }
     
 
+    html = "";
+
+    console.log(libri)
+    console.log(libri.length)
+
+    if (libri.length > 0) {
+        libri[nPag - 1].results.forEach(elemento => {
+            html += `
+            <li id="${elemento.id}" class="w-100 mt-2 mx-auto d-flex fd-row justify-content-left mb-4 cont-li">
+                <div class="li-cont-left object-fit-cover">
+                    <img class="object-fit-cover" src="/img/pexels-margarita-141441249-39307997.jpg" />
+                </div>
+
+                <div class="li-cont-left w-75">
+                    <h3>${elemento.title }</h3>
+                </div>
+            </li>
+        `
+                /*< li id = "${elemento.id}" class="w-100 mt-2 mx-auto" mb - 4 > ${ elemento.title }</li >*/
+        })
+    } else if (libri.length === 0) {
+        listL.innerHTML = "";
+        car.textContent = "Nessun libro trovato...";
+        contBut.classList.remove("d-flex");
+        contBut.classList.add("d-none");
+        return
+    }
+    
+    car.textContent = "";
     listL.innerHTML = html;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.querySelector(".libro-input")
+    const nav = document.querySelector(".navbar")
 
     input.addEventListener("keyup", () => {
         console.log(libri)
@@ -171,5 +213,16 @@ document.addEventListener("DOMContentLoaded", () => {
     pre.addEventListener("click", () => {
         navigazione(false, input.value)
     })
+
+    if (pre || su) {
+        
+        pre.addEventListener("click", () => {
+            nav.scrollIntoView({ behavior: 'smooth' });
+        })
+
+        su.addEventListener("click", () => {
+            nav.scrollIntoView({ behavior: 'smooth' });
+        })
+    }
 
 })

@@ -35,7 +35,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Scrittoio}/{action=Scrittura}")
+    pattern: "{controller=Home}/{action=Index}")
     .WithStaticAssets();
 
 
