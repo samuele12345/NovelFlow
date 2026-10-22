@@ -28,42 +28,349 @@
         cursor: default;
     }
 
-    .li-cont-left{
-        width: 400px;
-        height: 300px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        object-position: center;
+    
+
+    .cont-li img {
+        object-fit: contain;
+        width: 100%;
+        height: auto;
         
     }
 
-    .li-cont-left > img{
-        object-fit: cover;
+    .cont-li0{
         width: 100%;
-        height: 100%;
-        border: 1px solid transparent;
-        border-radius: 10px;
+        height: auto;
     }
 
     .cont-li{
-        
+        height: auto;
         overflow: hidden;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+        transition: 0.8s ease-in-out;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cont-li:hover {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 7px 7px 12px rgba(0,0,0,0.6);
+        transition: 0.6s ease-in-out;
+        cursor: pointer;
+        transform: translateY(-1%) translateX(-1%) scale(1.01);
+    }
+
+    .lista-libri{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        
+    }
+
+    .libro-input{
+        border-radius: 10px;
+        border: 1px solid rgba(0,0,0,0.4);
+        background: rgba(255, 255, 255, 0.5);
+        padding: 0.5% 1%;
     }
 
 </style>
 
-<div class="container-fluid w-100 text-center center">
+<div class="container-fluid w-100 h-auto text-center center">
     <input class="libro-input w-75" type="text" placeholder="Cerca un libro..."/>
 
-    <ol class="list-unstyled lista-libri w-75 mt-5 mx-auto">
-    </ol>
+    <div class=" lista-libri w-75 mt-5 mx-auto text-center mb-4 gap-5">
+        <div id="6133" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/6133/pg6133.cover.medium.jpg">
+                    
+            </div>
 
-    <p class="caricamento w-75 mx-auto"></p>
+            <h6>The Extraordinary Adventures o...</h6>
+        </div>
+        
+        <div id="76639" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/76639/pg76639.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Eloisa : $b or, A series of or...</h6>
+        </div>
+        
+        <div id="2852" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/2852/pg2852.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Hound of the Baskervilles</h6>
+        </div>
+        
+        <div id="393" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/393/pg393.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Blue Lagoon: A Romance</h6>
+        </div>
+        
+        <div id="204" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/204/pg204.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The innocence of Father Brown</h6>
+        </div>
+        
+        <div id="37106" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/37106/pg37106.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Little Women; Or, Meg, Jo, Bet...</h6>
+        </div>
+        
+        <div id="2350" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/2350/pg2350.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>His last bow : $b Some later r...</h6>
+        </div>
+        
+        <div id="67979" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/67979/pg67979.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Blue Castle: a novel</h6>
+        </div>
+        
+        <div id="3070" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/3070/pg3070.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Hound of the Baskervilles</h6>
+        </div>
+        
+        <div id="3530" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/3530/pg3530.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Love-at-arms : $b being a narr...</h6>
+        </div>
+        
+        <div id="16328" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/16328/pg16328.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Beowulf: An Anglo-Saxon Epic Poem</h6>
+        </div>
+        
+        <div id="2813" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/2813/pg2813.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Grand Babylon Hôtel</h6>
+        </div>
+        
+        <div id="24739" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/24739/pg24739.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Bidwell's Travels, from Wall S...</h6>
+        </div>
+        
+        <div id="2620" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/2620/pg2620.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Home Book of Verse — Volume 2</h6>
+        </div>
+        
+        <div id="10002" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/10002/pg10002.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The House on the Borderland</h6>
+        </div>
+        
+        <div id="224" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/224/pg224.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>A pair of blue eyes</h6>
+        </div>
+        
+        <div id="12758" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/12758/pg12758.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Library of the World's Best My...</h6>
+        </div>
+        
+        <div id="6635" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/6635/pg6635.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>A Romance of Billy-Goat Hill</h6>
+        </div>
+        
+        <div id="62383" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/62383/pg62383.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>A Biblia Sagrada, Contendo o V...</h6>
+        </div>
+        
+        <div id="24793" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/24793/pg24793.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Blow The Man Down: A Romance O...</h6>
+        </div>
+        
+        <div id="22163" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/22163/pg22163.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Rover Boys on the Farm; or...</h6>
+        </div>
+        
+        <div id="77092" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/77092/pg77092.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>She who sleeps : $b A romance ...</h6>
+        </div>
+        
+        <div id="23599" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/23599/pg23599.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Big Fix</h6>
+        </div>
+        
+        <div id="28054" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/28054/pg28054.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Brothers Karamazov</h6>
+        </div>
+        
+        <div id="6081" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/6081/pg6081.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Biographia Literaria</h6>
+        </div>
+        
+        <div id="28780" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/28780/pg28780.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Peter the Brazen: A Mystery St...</h6>
+        </div>
+        
+        <div id="59828" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/59828/pg59828.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The String of Pearls; Or, The ...</h6>
+        </div>
+        
+        <div id="34318" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/34318/pg34318.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Life Blood</h6>
+        </div>
+        
+        <div id="78033" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/78033/pg78033.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The silent Baltic : $b or, Det...</h6>
+        </div>
+        
+        <div id="51252" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/51252/pg51252.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>The Book of the Thousand Night...</h6>
+        </div>
+        
+        <div id="20203" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/20203/pg20203.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Autobiography of Benjamin Franklin</h6>
+        </div>
+        
+        <div id="16" class="gap-2 cont-li0">
+            <div class="cont-li mb-2">
+                <img src="https://www.gutenberg.org/cache/epub/16/pg16.cover.medium.jpg">
+                    
+            </div>
+
+            <h6>Peter Pan : $b [Peter and Wendy]</h6>
+        </div>
+    </div>
+
+    <p class="caricamento w-75 mx-auto container-fluid w-100 text-center"></p>
     
-    <div class="d-none fd-row w-75 justify-content-center align-items-center mx-auto cont-but mt-5">
+    <div class="d-none flex-row w-75 justify-content-center align-items-center mx-auto cont-but mt-5">
         <button class="btn-pag prec bg-transparent border-0 disabled">Precedente</button>
         <button class="bg-transparent border-0 n-pag">1</button>
         <button class="btn-pag suc bg-transparent border-0">Successiva</button>
