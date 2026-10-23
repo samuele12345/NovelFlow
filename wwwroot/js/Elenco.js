@@ -356,13 +356,6 @@ async function navigazione(prog, inp) {
             listL.innerHTML = "";
             car.textContent = "Nessun libro trovato...";
         }
-        
-
-        
-
-        
-
-        
 
         renderPage();
     } else {
@@ -464,14 +457,16 @@ function renderPage() {
     if (libri.length > 0) {
         libri[nPag - 1].results.forEach(elemento => {
             html += `
-            <div id="${elemento.id}" class="gap-2 cont-li0">
-                <div class="cont-li mb-2">
-                    <img src="${elemento.cover_image}" />
+            <a class="link-lib" href="/Biblioteca/LibroInstance?id=${encodeURIComponent(elemento.id)}">
+                <div id="${elemento.id}" class="gap-2 cont-li0">
+                    <div class="cont-li mb-2">
+                        <img src="${elemento.cover_image}" />
                     
-                </div>
+                    </div>
 
-                <h6>${elemento.title.length < 35 ? elemento.title : elemento.title.substring(0, 30) + "..."}</h6>
-            </div>
+                    <h6>${elemento.title.length < 35 ? elemento.title : elemento.title.substring(0, 30) + "..."}</h6>
+                </div>
+            </a>
         `
                 /*< li id = "${elemento.id}" class="w-100 mt-2 mx-auto" mb - 4 > ${ elemento.title }</li >*/
         })

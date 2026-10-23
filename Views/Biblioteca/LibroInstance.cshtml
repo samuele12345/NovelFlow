@@ -1,0 +1,21 @@
+﻿@using AmbienteDiProva.Models;
+@model Libro;
+
+@{
+    ViewData["Title"] = "LibroInstance";
+}
+
+<div class="container-fluid text-center">
+    <p class="d-none lib-id">@Model.Id</p>
+    <img class="lib-img"  src=@Model.Link />
+    <h2 class="lib-nome">@Model.Nome</h2>
+    <h3 class="lib-aut">@Model.Autore</h3>
+    <h4 class="lib-cat"> @Model.Category</h4>
+    <p class="lib-res">@Model.Resume</p>
+
+    
+</div>
+
+@section Scripts{
+    <script src="~/js/AppuntoInstance.js"></script>
+}

@@ -16,5 +16,7 @@ namespace AmbienteDiProva.Data
         }
 
         public DbSet<Appunto> Appunti { get; set; }
+
+        public DbSet<Libro> libri { get; set; }
     }
 }
