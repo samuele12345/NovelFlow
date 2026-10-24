@@ -5,17 +5,14 @@
     ViewData["Title"] = "LibroInstance";
 }
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-center d-flex flex-column align-items-center justify-content-center">
     <p class="d-none lib-id">@Model.Id</p>
-    <img class="lib-img"  src=@Model.Link />
-    <h2 class="lib-nome">@Model.Nome</h2>
+    <h2 class="lib-nome">@Model.Nome.Replace("$b ", "")</h2>
+    <img class="lib-img"  src=@Model.Img />
+    <a href=@Model.OnlineLink>Leggi il testo su Gutenberg.org</a>
+    <a href=@Model.DownloadLink>Scarica il testo da Gutenberg.org</a>
     <h3 class="lib-aut">@Model.Autore</h3>
     <h4 class="lib-cat"> @Model.Category</h4>
     <p class="lib-res">@Model.Resume</p>
-
-    
 </div>
 
-@section Scripts{
-    <script src="~/js/AppuntoInstance.js"></script>
-}
