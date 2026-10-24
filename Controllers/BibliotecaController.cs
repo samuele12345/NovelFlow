@@ -108,21 +108,20 @@ namespace AmbienteDiProva.Controllers
 
                 Console.WriteLine(resJson);
 
-                return View(new Libro
+                var visual = View(new Libro
                 {
 
                     Id = (int)resJson["results"][0]["id"],
                     Nome = (string)resJson["results"][0]["title"],
                     Img = (string)resJson["results"][0]["cover_image"],
                     OnlineLink = $"https://www.gutenberg.org/cache/epub/{(int)resJson["results"][0]["id"]}/pg{(int)resJson["results"][0]["id"]}-images.html",
-                    DownloadLink = $"https://www.gutenberg.org/ebooks/{(int)resJson["results"][0]["id"]}.epub3.images"
-                    /*
-                    Resume =
-                    Category =
-                    Autore = 
-                    */
+                    DownloadLink = $"https://www.gutenberg.org/ebooks/{(int)resJson["results"][0]["id"]}.epub3.images",
+                    Category = (string)resJson["results"][0]["bookshelves"].ToString(),
+                    Autore = (string)resJson["results"][0]["authors"][0]["name"],
+                    Resume = (string)resJson["results"][0]["summary"]
                 });
-                
+
+                return visual;
             }
             catch (Exception e)
             {

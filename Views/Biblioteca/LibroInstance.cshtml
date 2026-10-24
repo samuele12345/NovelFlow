@@ -5,14 +5,53 @@
     ViewData["Title"] = "LibroInstance";
 }
 
-<div class="container-fluid text-center d-flex flex-column align-items-center justify-content-center">
+<style>
+    .but-sav{
+        background: rgba(173, 216, 230, 0.7);
+        font-size: 30px;
+        font-weight: 400;
+        transition: 0.5s ease-in-out;
+    }
+
+    .but-sav:hover{
+        background: rgba(173, 216, 230, 1);
+        font-weight: 450;
+        scale: 1.02;
+        transition: 0.8s ease-in-out;
+    }
+
+    .lib-res{
+        line-height: 2rem;
+    }
+
+</style>
+
+<div class="container-fluid text-center d-flex flex-column align-items-center justify-content-center gap-3 mt-5">
     <p class="d-none lib-id">@Model.Id</p>
-    <h2 class="lib-nome">@Model.Nome.Replace("$b ", "")</h2>
-    <img class="lib-img"  src=@Model.Img />
-    <a href=@Model.OnlineLink>Leggi il testo su Gutenberg.org</a>
-    <a href=@Model.DownloadLink>Scarica il testo da Gutenberg.org</a>
-    <h3 class="lib-aut">@Model.Autore</h3>
-    <h4 class="lib-cat"> @Model.Category</h4>
-    <p class="lib-res">@Model.Resume</p>
+    <h1 class="lib-nome mb-4">@Model.Nome.Replace("$b ", "")</h1>
+    <img class="lib-img rounded-2 border-1 border-end border-bottom border-dark shadow-lg"  src=@Model.Img />
+    <div class="d-flex flex-row align-item-center justify-content-center gap-3">
+        <a class="link-online" href=@Model.OnlineLink>Leggi il testo su Gutenberg.org</a>
+        <a class="link-download" href=@Model.DownloadLink>Scarica il testo da Gutenberg.org</a>
+    </div>
+    <h3 class="lib-aut">Autore: @Model.Autore</h3>
+    <div class="lib-cat gap-1"> 
+        <h4>Categorie:</h4>
+        <p class="lib-categs">@Model.Category.Replace("[", "").Replace("]", "").Replace("Category: ", "")</p>
+    </div>
+    <div class="gap-1 resume text-center w-50">
+        <h4>Riassunto:</h4>
+        <p class="lib-res">@Model.Resume</p>
+    </div>
+
+    <div class="but-sub">
+        <button class="border-0 rounded-2 px-3 py-2 but-sav">Salva</button>
+    </div>
 </div>
+
+@section Scripts{
+    @{
+        <script src="~/js/LibroInstance.js"></script>
+    } 
+}
 

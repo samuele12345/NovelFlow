@@ -34,7 +34,7 @@
         object-fit: contain;
         width: 100%;
         height: auto;
-        
+        border-radius: 5px 5px 5px 5px;
     }
 
     .cont-li0{
@@ -44,12 +44,13 @@
 
     .cont-li{
         height: auto;
-        overflow: hidden;
         box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
         transition: 0.8s ease-in-out;
-        border-radius: 10px;
+        border-radius: 10px 15px 10px 10px;
         display: flex;
         flex-direction: column;
+        border-right: 7px solid rgba(0,0,0,0.4);
+        border-bottom: 7px solid rgba(0,0,0,0.2);
     }
 
     .cont-li:hover {
@@ -62,7 +63,7 @@
 
     .lista-libri{
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         
     }
 
