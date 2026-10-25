@@ -44,9 +44,19 @@
         <p class="lib-res">@Model.Resume</p>
     </div>
 
-    <div class="but-sub">
-        <button class="border-0 rounded-2 px-3 py-2 but-sav">Salva</button>
-    </div>
+    @if(Model.IdGutenberg.Equals(0))
+    {
+        <div class="but-sub">
+            <button class="border-0 rounded-2 px-3 py-2 but-sav">Salva</button>
+        </div>
+    }
+    else
+    {
+        <div class="but-sub">
+            <button class="border-0 rounded-2 px-3 py-2 but-sav" disabled>Salvato</button>
+        </div>
+    }
+
 </div>
 
 @section Scripts{

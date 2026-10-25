@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Scaffale";
+}
+
+<style>
+    .active {
+        color: blue;
+    }
+
+    .btn-pag {
+        transition: 0.3s ease-in-out;
+    }
+
+        .btn-pag:hover {
+            transform: scale(1.02);
+            transition: 0.3s ease-in-out;
+        }
+
+    .dis-none {
+        display: none;
+    }
+
+    .cont-but {
+        gap: 10px;
+    }
+
+    .n-pag:hover {
+        cursor: default;
+    }
+
+    
+
+    .cont-li img {
+        object-fit: contain;
+        width: 100%;
+        height: auto;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    .cont-li0 {
+        width: 100%;
+        height: auto;
+    }
+
+    .cont-li {
+        height: auto;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+        transition: 0.8s ease-in-out;
+        border-radius: 10px 15px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        border-right: 7px solid rgba(0,0,0,0.4);
+        border-bottom: 7px solid rgba(0,0,0,0.2);
+    }
+
+    @@media(max-width: 1500px) {
+        .cont-li {
+            border-right: 4px solid rgba(0,0,0,0.4);
+            border-bottom: 4px solid rgba(0,0,0,0.2);
+        }
+    }
+
+    .cont-li:hover {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 7px 7px 12px rgba(0,0,0,0.6);
+        transition: 0.6s ease-in-out;
+        cursor: pointer;
+        transform: translateY(-1%) translateX(-1%) scale(1.01);
+    }
+
+    .lista-libri {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .libro-input {
+        border-radius: 10px;
+        border: 1px solid rgba(0,0,0,0.4);
+        background: rgba(255, 255, 255, 0.5);
+        padding: 0.5% 1%;
+    }
+
+    .link-lib {
+        text-decoration: none;
+        color: black;
+    }
+
+</style>
+
+<div class="container-fluid w-100 h-auto text-center center">
+    <input class="libro-input w-75" type="text" placeholder="Cerca un libro..." />
+
+    <div class=" lista-libri w-75 mt-5 mx-auto text-center mb-4 gap-5">
+    </div>
+
+    <p class="caricamento w-75 mx-auto container-fluid w-100 text-center"></p>
+
+    <div class="d-none flex-row w-75 justify-content-center align-items-center mx-auto cont-but mt-5">
+        <button class="btn-pag prec bg-transparent border-0 disabled">Precedente</button>
+        <button class="bg-transparent border-0 n-pag">1</button>
+        <button class="btn-pag suc bg-transparent border-0">Successiva</button>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        <script src="~/js/Scaffale.js"></script>
+    }
+}

@@ -56,13 +56,19 @@ namespace AmbienteDiProva.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DownloadLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdGutenberg")
+                        .HasColumnType("int");
+
                     b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Link")
+                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("OnlineLink")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Resume")
@@ -70,7 +76,9 @@ namespace AmbienteDiProva.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("libri");
+                    b.HasIndex("IdGutenberg");
+
+                    b.ToTable("Libri");
                 });
 #pragma warning restore 612, 618
         }

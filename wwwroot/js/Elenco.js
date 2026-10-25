@@ -464,11 +464,20 @@ async function navigazione(prog, inp) {
             throw new Error(`Error status: ${response.status}`);
         }
 
-        const result = await response.json()
+        console.log("response: " + response)
 
-        console.log(typeof result.content, JSON.parse(result.content))
+        const result = await response.json();
+
+        console.log("tipo: ", typeof result.content, "json: ", JSON.parse(result.content))
 
         const contenuto = JSON.parse(result.content)
+
+
+        if (contenuto.next === null) {
+            su.disabled = true;
+        } else {
+            su.disabled = false;
+        }
 
         if (contenuto.results.length > 0) {
             libri[nPag - 1] = contenuto;

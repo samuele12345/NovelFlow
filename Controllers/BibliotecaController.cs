@@ -1,13 +1,15 @@
-﻿using AmbienteDiProva.Models;
+﻿using AmbienteDiProva.Data;
+using AmbienteDiProva.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ClientModel.Primitives;
 using System.Collections.Immutable;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
-using static System.Net.WebRequestMethods;
 using System.Text.Json.Nodes;
+using static System.Net.WebRequestMethods;
 
 namespace AmbienteDiProva.Controllers
 {
@@ -16,10 +18,13 @@ namespace AmbienteDiProva.Controllers
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
 
-        public BibliotecaController(IHttpClientFactory iHttpClientFactory, IConfiguration configuration)
+        private readonly AmbienteProvaContext _context;
+
+        public BibliotecaController(IHttpClientFactory iHttpClientFactory, IConfiguration configuration, AmbienteProvaContext context)
         {
             _httpClientFactory = iHttpClientFactory;
             _configuration = configuration;
+            _context = context;
         }
 
         public IActionResult Elenco()
@@ -77,6 +82,15 @@ namespace AmbienteDiProva.Controllers
         [HttpGet]
         public async Task<IActionResult> LibroInstance([FromQuery] int id)
         {
+            var libro = _context.Libri.Find(id);
+
+            if (libro != null)
+            {
+                Console.WriteLine(libro);
+                return View(libro);
+            }
+            
+
             var apiKey = _configuration["Gutenberg:XRapidAPIKey:1"];
 
             if (string.IsNullOrWhiteSpace(apiKey))
