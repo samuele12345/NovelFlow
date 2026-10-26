@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AmbienteDiProva.Models
 {
-    [Index(nameof(IdGutenberg))]
     public class Libro
     {
         public int Id { get; set; }
-        public int IdGutenberg { get; set; }
+        public int GutenbergId { get; set; }
         public string? Nome { get; set; }
         public string? Img { get; set; }
         public string? OnlineLink { get; set; }

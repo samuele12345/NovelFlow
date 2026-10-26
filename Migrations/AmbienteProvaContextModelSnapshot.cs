@@ -59,7 +59,7 @@ namespace AmbienteDiProva.Migrations
                     b.Property<string>("DownloadLink")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdGutenberg")
+                    b.Property<int>("GutenbergId")
                         .HasColumnType("int");
 
                     b.Property<string>("Img")
@@ -75,8 +75,6 @@ namespace AmbienteDiProva.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdGutenberg");
 
                     b.ToTable("Libri");
                 });

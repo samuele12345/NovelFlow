@@ -125,7 +125,7 @@ namespace AmbienteDiProva.Controllers
                 var visual = View(new Libro
                 {
 
-                    Id = (int)resJson["results"][0]["id"],
+                    GutenbergId = (int)resJson["results"][0]["id"],
                     Nome = (string)resJson["results"][0]["title"],
                     Img = (string)resJson["results"][0]["cover_image"],
                     OnlineLink = $"https://www.gutenberg.org/cache/epub/{(int)resJson["results"][0]["id"]}/pg{(int)resJson["results"][0]["id"]}-images.html",
@@ -145,6 +145,41 @@ namespace AmbienteDiProva.Controllers
             return BadRequest("Errore");
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> LibroDelete([FromQuery] int id)
+        {
+            if(id <= 0)
+            {
+                throw new Exception($"Id: {id} non valido");
+            }
+
+            try
+            {
+                if (await _context.Libri.Where(lib => lib.GutenbergId == id).AnyAsync())
+                {
+                    Libro lib = await _context.Libri.Where(lib => lib.GutenbergId == id).FirstOrDefaultAsync();
+
+                    if (lib == null)
+                    {
+                        throw new Exception("Libro inesistente");
+                    }
+
+                    _context.Libri.Remove(lib);
+
+                    return Json(await _context.SaveChangesAsync());
+                }
+
+
+
+                return StatusCode(404, $"Libro con id: {id} inesistente");
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return StatusCode(500, "Server error");
+        }
     }
 }

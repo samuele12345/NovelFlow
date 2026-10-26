@@ -1,5 +1,6 @@
 ﻿using AmbienteDiProva.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace AmbienteDiProva.Data
 {
@@ -7,11 +8,12 @@ namespace AmbienteDiProva.Data
     {
         public AmbienteProvaContext(DbContextOptions options) : base(options)
         {
-
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
+
             base.OnModelCreating(modelbuilder);
         }
 

@@ -1,12 +1,13 @@
 ﻿const res = document.querySelector(".resume");
 const tex = document.querySelector(".lib-res");
-const but = document.querySelector(".but-sav")
+const but = document.querySelector(".but-sav");
+const del = document.querySelector(".but-del");
 
 async function statusDefault() {
-    const idGuten = document.querySelector(".lib-id").textContent;
+    const id = document.querySelector(".lib-id-main").textContent;
 
     try {
-        const response = await fetch(`/AreaPersonale/ContainsLibro?idGutenberg=${encodeURIComponent(idGuten)}`);
+        const response = await fetch(`/AreaPersonale/ContainsLibro?id=${encodeURIComponent(id)}`);
 
         const result = await response.json();
 
@@ -15,6 +16,8 @@ async function statusDefault() {
         if (result.presente) {
             but.disabled = true;
             but.textContent = "Salvato";
+            del.classList.remove("invisible");
+            del.disabled = false;
         }
     } catch (error) {
         console.log(error);
@@ -24,7 +27,7 @@ async function statusDefault() {
 async function salvaLibro(){
     try{
         const libro = {
-            IdGutenberg: document.querySelector(".lib-id").textContent,
+            GutenbergId: document.querySelector(".lib-id-main").textContent,
             Nome: document.querySelector(".lib-nome").textContent,
             Img: document.querySelector(".lib-img").src,
             OnlineLink: document.querySelector(".link-online").href,
@@ -54,9 +57,39 @@ async function salvaLibro(){
 
         but.disabled = true;
         but.textContent = "Salvato";
+        del.classList.remove("invisible");
+        del.disabled = false;
     }catch(error)
     {
         console.log(error);
+    }
+}
+
+async function eliminaLibro(id) {
+    try {
+        const response = await fetch(`/Biblioteca/LibroDelete?id=${encodeURIComponent(id)}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        console.log(`${result} modifica eseguita`);
+
+        del.classList.add("invisible");
+        del.disabled = true;
+        but.disabled = false;
+        but.textContent = "Salva";
+        
+    } catch (error)
+    {
+        console.log(error)
     }
 }
 
@@ -70,4 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
     but.addEventListener("click", () => {
         salvaLibro();
     });
+
+    del.addEventListener("click", () => {
+        const lId = document.querySelector(".lib-id-main").textContent;
+        eliminaLibro(lId);
+    })
 })

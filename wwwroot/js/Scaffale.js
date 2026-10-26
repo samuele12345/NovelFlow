@@ -7,6 +7,7 @@ const su = document.querySelector(".suc")
 const pag = document.querySelector(".n-pag")
 const car = document.querySelector(".caricamento")
 const contBut = document.querySelector(".cont-but")
+var elResult;
 ricercaLibriDefault("")
 
 async function navigazione(prog, inp) {
@@ -31,6 +32,7 @@ async function navigazione(prog, inp) {
         pag.textContent = nPag;
     }
 
+
     if (libri[nPag - 1] === undefined) {
         const response = await fetch(`/AreaPersonale/LibriScaffale`);
         car.textContent = "Caricamento...";
@@ -40,26 +42,29 @@ async function navigazione(prog, inp) {
             throw new Error(`Error status: ${response.status}`);
         }
 
-        const result = await response.json()
+        elResult = await response.json()
 
-        console.log(result);
+        console.log(elResult);
 
         if (inp !== "") {
-            result.body = result.body.filter((el) => el.nome.toLowerCase().includes(inp.toLowerCase()))
+            elResult.body = elResult.body.filter((el) => el.nome.toLowerCase().includes(inp.toLowerCase()))
 
-            console.log("body: " + result.body)
+            console.log("body: " + elResult.body)
         }
 
         
 
-        if (result.body.length > 0) {
-            libri[nPag - 1] = result.body;
+        if (elResult.body.length > 0) {
+            libri[nPag - 1] = elResult.body.slice(0 + ((nPag - 1) * 32), 32 + ((nPag - 1) * 32));
 
+            console.log(elResult.body.at(1 + ((nPag) * 32)))
+
+            console.log(libri)
             contBut.classList.remove("d-none");
             contBut.classList.add("d-flex");
 
             console.log(libri[nPag - 1]);
-        } else if (result.body.length === 0) {
+        } else if (elResult.body.length === 0) {
             contBut.classList.remove("d-flex");
             contBut.classList.add("d-none");
             listL.innerHTML = "";
@@ -76,16 +81,20 @@ function ricercaLibriDefault(inp = "") {
     nPag = 1;
     pre.disabled = true;
     libri = [];
-    navigazione(true, inp)
+    navigazione(null, inp)
 
 }
 
 function renderPage() {
     html = "";
 
-    if (libri[nPag - 1].length < 32) {
+    if (libri[nPag - 1] === undefined || libri[nPag - 1].length < 32) {
         su.disabled = true;
+        pre.disabled = true;
     } else {
+        if (nPag - 1 == 0) {
+            pre.disabled = true;
+        }
         su.disabled = false;
     }
 
@@ -110,6 +119,12 @@ function renderPage() {
         `
             /*< li id = "${elemento.id}" class="w-100 mt-2 mx-auto" mb - 4 > ${ elemento.title }</li >*/
         })
+
+
+        if (elResult.body.slice(0, elResult.body.length).length < 33 && libri.length == 1) {
+            contBut.classList.remove("d-flex");
+            contBut.classList.add("d-none");
+        }
     } else if (libri.length === 0) {
         listL.innerHTML = "";
         car.textContent = "Nessun libro trovato...";
@@ -120,12 +135,29 @@ function renderPage() {
 
     car.textContent = "";
     listL.innerHTML = html;
+
+    if ((nPag - 1) > 0) {
+        pre.disabled = false;
+    }
+
+    if (elResult.body.at(0 + ((nPag) * 32)) === undefined) {
+        su.disabled = true;
+    } else {
+        su.disabled = false;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.querySelector(".libro-input")
     const nav = document.querySelector(".navbar")
 
+    window.addEventListener('pageshow', function (event) {
+        
+        if (event.persisted) { // controlla se la pagina era già stata caricata in bfcache o no 
+            window.location.reload(); // Ricarica la pagina direttamente dal server, no bfcache
+            return;
+        }
+    });
     
 
     input.addEventListener("keyup", () => {

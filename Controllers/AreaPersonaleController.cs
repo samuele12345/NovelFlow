@@ -45,11 +45,11 @@ namespace AmbienteDiProva.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ContainsLibro([FromQuery] int idGutenberg)
+        public async Task<IActionResult> ContainsLibro([FromQuery] int id)
         {
             try
             {
-                var presente = await _context.Libri.AnyAsync(li => li.IdGutenberg == idGutenberg);
+                var presente = await _context.Libri.AnyAsync(li => li.GutenbergId == id);
 
                 return Json(new
                 {
