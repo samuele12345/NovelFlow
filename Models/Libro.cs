@@ -16,7 +16,7 @@ namespace AmbienteDiProva.Models
         public string? Autore { get; set; }
 
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public ApplicationUser? User { get; set; }
     }
 }
