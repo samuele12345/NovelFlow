@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using AmbienteDiProva.Models;
+@inject SignInManager<ApplicationUser> signInManager
+
+@if (signInManager.IsSignedIn(User))
+{
+    <form >
+
+    </form>
+}
+else
+{
+    
+}
+
+
+
+@section Scripts{
+@{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
