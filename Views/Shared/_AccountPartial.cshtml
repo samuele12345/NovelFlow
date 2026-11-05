@@ -1,22 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using AmbienteDiProva.Models;
-@inject SignInManager<ApplicationUser> signInManager
+@inject SignInManager<ApplicationUser> SignInManager;
 
-@if (signInManager.IsSignedIn(User))
-{
-    <form >
-
-    </form>
-}
-else
-{
-    
-}
-
-
-
-@section Scripts{
-@{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+<style>
+    ul{
+        list-style: none;
     }
-}
+</style>
+
+<ul class="d-flex ms-auto">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form asp-controller="Account" asp-action="Logout" method="post">
+            <button type="submit" style="border:none; backround:transparent; padding: 0.5rem 0.5rem" class=nav-link>Logout</button>
+        </form>
+    }
+    else
+    {
+        <li><a asp-controller="Account" asp-action="Login" class="nav-link">Login</a></li>
+        <li><a asp-controller="Account" asp-action="Register" class="nav-link">Register</a></li>
+    }
+</ul>

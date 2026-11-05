@@ -5,7 +5,7 @@ namespace AmbienteDiProva.ViewModels
 {
     public class LoginViewModel
     {
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Formato email non valido!")]
         [Required(ErrorMessage = "Email richiesta!")]
         public string? Email { get; set; }
 

@@ -1,12 +1,13 @@
 ﻿using AmbienteDiProva.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace AmbienteDiProva.Data
 {
-    public class AmbienteProvaContext : DbContext
+    public class AmbienteProvaContext : IdentityDbContext<ApplicationUser>
     {
-        public AmbienteProvaContext(DbContextOptions options) : base(options)
+        public AmbienteProvaContext(
+            DbContextOptions<AmbienteProvaContext> options) : base(options)
         {
             
         }
@@ -19,6 +20,8 @@ namespace AmbienteDiProva.Data
                 .HasOne(u => u.User)
                 .WithMany(l => l.Libri)
                 .HasForeignKey(ui => ui.UserId);
+
+
         }
 
         public DbSet<Appunto> Appunti { get; set; }
